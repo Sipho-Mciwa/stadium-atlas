@@ -1,176 +1,73 @@
-# Stadium Atlas ⚽🏟️
+# React + TypeScript + Vite
 
-A modern, type-safe React + TypeScript application that allows users to explore football teams and stadiums from the **top 5 European leagues**, by season, using real-world football data.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-This project is built as a **learning-first, portfolio-grade application** to demonstrate strong fundamentals in React architecture, TypeScript, and state-driven UI design.
+Currently, two official plugins are available:
 
----
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 🚀 Live Demo
+## React Compiler
 
-*(Coming soon)*
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
----
+## Expanding the ESLint configuration
 
-## 🎯 Project Goals
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-The purpose of Stadium Atlas is to:
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-* Solidify **TypeScript fundamentals** in a real application
-* Practice **clean React architecture**
-* Use **discriminated unions** for predictable UI state
-* Consume and normalize **external APIs safely**
-* Build scalable UI patterns used in real-world apps
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
----
-
-## 🧠 Key Features
-
-* 🌍 Select from the **Top 5 European Leagues**
-* 📅 Choose a specific **season**
-* 🔍 Fetch and display teams dynamically
-* 📋 View teams in a clean list layout
-* 📖 Expand a team row inline to reveal:
-
-  * Stadium name
-  * Capacity
-  * Coach
-  * Founded year
-* 🔁 Loading, error, idle, and success states handled explicitly
-
----
-
-## 🏗️ Tech Stack
-
-* **React**
-* **TypeScript**
-* **Axios** (API requests)
-* **Functional Components + Hooks**
-
----
-
-## 🧩 Architecture Overview
-
-The app is structured around **separation of concerns** and **predictable state**.
-
-```
-App
- ├── Filters (League & Season selection)
- ├── TeamsList
- │    └── TeamRow (expandable)
- │         └── TeamDetails
- └── useTeams (custom hook)
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
----
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## 🧠 State Management Philosophy
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-Instead of juggling multiple booleans (`isLoading`, `hasError`, etc.), the app uses a **discriminated union** to model UI state:
-
-```ts
-export type TeamsState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "error"; message: string }
-  | { status: "success"; teams: Team[] };
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-This ensures:
-
-* Impossible states cannot occur
-* Rendering logic is simple and explicit
-* TypeScript enforces correctness at compile time
-
----
-
-## 🔄 Expandable Team Rows
-
-Only **one team** can be expanded at a time using a controlled state pattern:
-
-```ts
-const [expandedTeamId, setExpandedTeamId] = useState<number | null>(null);
-```
-
-This avoids UI sync bugs and scales cleanly.
-
----
-
-## 🔌 API Handling
-
-* External football API data is **mapped into internal domain models**
-* The UI never depends directly on raw API responses
-* Makes the app resilient to API changes
-
-```ts
-export interface Team {
-  id: number;
-  name: string;
-  badge: string;
-  stadium: string;
-  capacity: number;
-  founded: number;
-  coach: string;
-}
-```
-
----
-
-## 🧪 Error & Loading States
-
-All async operations are wrapped with:
-
-* Loading indicators
-* User-friendly error messages
-* Disabled actions during requests
-
-This mirrors real production UI behavior.
-
----
-
-## 📈 What This Project Demonstrates
-
-* Strong understanding of **TypeScript in React**
-* Real-world **state modeling**
-* Clean component boundaries
-* Scalable UI patterns
-* Professional async handling
-
-This project is intentionally over-engineered **for learning purposes** — the same patterns scale to large applications.
-
----
-
-## 🛠️ Future Improvements
-
-* 🔍 Team search & filtering
-* ⭐ Favorite teams
-* 💾 Caching API responses
-* 🖼️ Stadium images
-* 📱 Responsive design
-* 🧪 Unit tests for hooks & reducers
-
----
-
-## 📦 Installation
-
-```bash
-git clone https://github.com/your-username/stadium-atlas.git
-cd stadium-atlas
-npm install
-npm run dev
-```
-
----
-
-## 👤 Author
-
-Built by **Sipho Mciwa**
-
-> Junior Frontend Developer focused on React, TypeScript, and continuous improvement.
-
----
-
-## 📜 License
-
-MIT License
-
