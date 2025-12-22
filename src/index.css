@@ -13,56 +13,76 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.teams-list-container {
+  padding-top: 100px;
+  list-style: none;
 }
 
-body {
-  margin: 0;
+li {
+  list-style: none;
+}
+
+.team-row-container {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-between;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.team-row-container:hover {
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: #4b4a4a;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.extended-details {
+  height: 50px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0;
+}
+
+.team-stadium {
+  height: 100px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.team-stadium-extended {
+  height: 120px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.team-header-details {
+  display: flex;
+}
+
+.team-badge {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+}
+
+.team-badge-extended {
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+}
+
+.team-name {
+  font-size: xx-large;
+  padding-top: 10px;
+}
+
+span {
+  font-weight: bold;
+}
+
+.loading-logo {
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }

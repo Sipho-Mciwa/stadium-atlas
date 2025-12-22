@@ -1,0 +1,25 @@
+.league-select {
+  color: black;
+  background-color: white;
+  height: 45px;
+  border: none;
+  border-radius: 20px;
+  padding: 0px 15px;
+  width: 200px;
+  margin: 0px 10px;
+}
+
+.season-select {
+  color: black;
+  background-color: white;
+  height: 45px;
+  border: none;
+  border-radius: 20px;
+  padding: 0px 15px;
+  width: 200px;
+  margin: 0px 10px;
+}
+
+.league-select:hover, .season-select:hover {
+  cursor: pointer;
+}
