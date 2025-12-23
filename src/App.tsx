@@ -10,7 +10,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 function App() {
   const [league, setLeague] = useState<League>('EPL');
   const [season, setSeason] = useState<Season>('2023');
-  const {state, fetchTeams, expandedTeamId, setExpandedTeamId} = useTeams();
+  const [expandedTeamId, setExpandedTeamId] = useState<number | null>(null);
+  const { state, fetchTeams } = useTeams();
 
   function renderContent() {
     switch (state.status) {
@@ -24,7 +25,8 @@ function App() {
         return (
           <TeamsList teams={state.teams} expandedTeamId={expandedTeamId} setExpandedTeamId={setExpandedTeamId}/>
         );
-      
+      case "refreshing":
+        return (<TeamsList teams={state.teams} expandedTeamId={expandedTeamId} setExpandedTeamId={setExpandedTeamId}/>);
       default: {
         const _never: never = state;
         return _never;

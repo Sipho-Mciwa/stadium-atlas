@@ -17,6 +17,7 @@ export type TeamsState =
     | { status: "idle" }
     | { status: "loading" }
     | { status: "error"; message: string }
+    | { status: "refreshing"; teams: Team[] }
     | { status: "success"; teams: Team[] };
 
     

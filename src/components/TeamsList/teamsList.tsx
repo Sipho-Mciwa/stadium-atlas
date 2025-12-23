@@ -16,10 +16,7 @@ export default function TeamsList({ teams, expandedTeamId, setExpandedTeamId }: 
               return (
                 <li key={team.id}>
                   <TeamRow 
-                    name={team.name}
-                    badge={team.logo}
-                    stadium={team.stadium}
-                    founded={team.founded}
+                    team={team}
                     isExpanded={isExpanded}
                     onToggle={() => setExpandedTeamId(isExpanded ? null : team.id)} />
                 </li>
